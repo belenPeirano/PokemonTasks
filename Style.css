@@ -1,0 +1,59 @@
+body {
+    background-color: #7C9070;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    margin-bottom: 1em;
+    color: black;
+    border-bottom: solid 0.05em;
+    padding-bottom: 0.5em;
+    text-align: center;
+    font-size: xxx-large;
+}
+
+label {
+    margin: 0.5em;
+}
+
+button {
+    margin-left: 1em;
+    background-color: #020202;
+    width: 9em;
+    height: 3em;
+    border: solid 0.1em white;
+    border-radius: 1em;
+    font-weight: 900;
+    font-family: sans-serif;
+    color: white;
+    letter-spacing: 0.1em;
+}
+
+.form {
+    color: black;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3em;
+    font-weight: 700;
+}
+
+.tasks {
+    margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tasks div {
+    padding: 20px;
+    border: none;
+    border-radius: 1em;
+    margin: 10px;
+    background-color: #DDFFBC;
+    width: 25%;
+}
+
+h2 {
+    margin-top: 2px;
+    border-bottom: solid black 1px;
+}
