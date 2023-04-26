@@ -102,7 +102,7 @@ btnSubmit.addEventListener("click", async () => {
   let titleElement = document.createElement("h2");
   let descriptionElement = document.createElement("p");
   let namePokemonElement = document.createElement("p");
-  let pokemon = document.getElementById("pokemons").options[0].text;
+  let pokemon = document.getElementById("pokemons").value;
 
   titleElement.innerText = title;
   descriptionElement.innerText = description;
