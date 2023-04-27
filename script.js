@@ -1,8 +1,6 @@
-const input = document.getElementById("input");
+const inputTitle = document.getElementById("inputTitle");
 const inputDescription = document.getElementById("inputDescription");
 const btnSubmit = document.getElementById("btnSubmit");
-
-let namePokemon = "";
 
 const uri = 'https://my-json-server.typicode.com/Joelit0/UT2-TA2/tasks';
 const uriPokemon = 'https://pokeapi.co/api/v2/pokemon';
@@ -49,30 +47,10 @@ function addListenerToDelete(element) {
   })
 }
 
-window.addEventListener("DOMContentLoaded", async (_event) => {
-  getPosts(uriPokemon).then((response) => {
-    response.results.forEach((pokemon) => {
-      let pokemons = document.getElementById("pokemons");
-
-      let option = document.createElement("option");
-      option.value = pokemon.name;
-      option.text = pokemon.name;
-      pokemons.appendChild(option);
-
-      namePokemon = option.value;
-    })
-  })
-  
-  await getPosts(uri).then((response) => {
-    response.forEach((element) => {
-      let tasks = document.getElementById("tasks");
-      let id = element.id;
-      let title = element.title;
-      let description = element.description;
-      let newTask = document.createElement("div");
-
-      newTask.classList.add("task");
-      
+//ToDo
+function createTask() {
+  let tasks = document.getElementById("tasks");
+      let newTask = document.createElement("li");
       let titleElement = document.createElement("h2");
       let descriptionElement = document.createElement("p");
 
@@ -86,6 +64,29 @@ window.addEventListener("DOMContentLoaded", async (_event) => {
       tasks.appendChild(newTask);
 
       addListenerToDelete(newTask);
+}
+
+window.addEventListener("DOMContentLoaded", async (_event) => {
+  getPosts(uriPokemon).then((response) => {
+    response.results.forEach((pokemon) => {
+      let pokemons = document.getElementById("pokemons");
+
+      let option = document.createElement("option");
+      option.value = pokemon.name;
+      option.text = pokemon.name;
+      pokemons.appendChild(option);
+    })
+  })
+
+  await getPosts(uri).then((response) => {
+    response.forEach((element) => {
+      
+      let id = element.id;
+      let title = element.title;
+      let description = element.description;
+      newTask.classList.add("task");
+
+      createTask();
     })
   }).catch((error) => {
     alert(error);
@@ -93,25 +94,12 @@ window.addEventListener("DOMContentLoaded", async (_event) => {
 })
 
 btnSubmit.addEventListener("click", async () => {
-  const title = input.value;
+  const title = inputTitle.value;
   const description = inputDescription.value;
   createPost(title, description);
-  let tasks = document.getElementById("tasks");
-
-  let newTask = document.createElement("div");
-  let titleElement = document.createElement("h2");
-  let descriptionElement = document.createElement("p");
-  let namePokemonElement = document.createElement("p");
+  
   let pokemon = document.getElementById("pokemons").value;
-
-  titleElement.innerText = title;
-  descriptionElement.innerText = description;
   namePokemonElement.innerText = pokemon;
 
-  newTask.appendChild(titleElement);
-  newTask.appendChild(descriptionElement);
-  newTask.appendChild(namePokemonElement);
-  tasks.appendChild(newTask);
-
-  addListenerToDelete(newTask);
+  createTask();
 })
